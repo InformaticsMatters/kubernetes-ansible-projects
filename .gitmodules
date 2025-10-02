@@ -1,0 +1,3 @@
+[submodule "ansible-infrastructure"]
+	path = ansible-infrastructure
+	url = https://github.com/InformaticsMatters/ansible-infrastructure

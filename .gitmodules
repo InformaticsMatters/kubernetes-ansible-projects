@@ -1,3 +1,21 @@
 [submodule "ansible-infrastructure"]
 	path = ansible-infrastructure
 	url = https://github.com/InformaticsMatters/ansible-infrastructure
+[submodule "squonk2-account-server-ansible"]
+	path = squonk2-account-server-ansible
+	url = https://gitlab.com/informaticsmatters/squonk2-account-server-ansible.git
+[submodule "squonk2-data-manager-ansible"]
+	path = squonk2-data-manager-ansible
+	url = https://gitlab.com/informaticsmatters/squonk2-data-manager-ansible.git
+[submodule "squonk2-data-manager-ui-ansible"]
+	path = squonk2-data-manager-ui-ansible
+	url = https://github.com/informaticsmatters/squonk2-data-manager-ui-ansible.git
+[submodule "squonk2-data-manager-jupyter-operator-ansible"]
+	path = squonk2-data-manager-jupyter-operator-ansible
+	url = https://github.com/informaticsmatters/squonk2-data-manager-jupyter-operator-ansible.git
+[submodule "squonk2-data-manager-job-operator-ansible"]
+	path = squonk2-data-manager-job-operator-ansible
+	url = https://github.com/informaticsmatters/squonk2-data-manager-job-operator-ansible.git
+[submodule "squonk2-fastapi-ws-event-stream-ansible"]
+	path = squonk2-fastapi-ws-event-stream-ansible
+	url = https://github.com/informaticsmatters/squonk2-fastapi-ws-event-stream-ansible.git

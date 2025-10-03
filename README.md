@@ -1,10 +1,11 @@
 # kubernetes-ansible-projects
 
-A repository with a Visual-Studio code [devcontainer] that is designed to simplify the
-development and execution of our various kubernetes-based ansible projects. Each
-of our relevant ansible projects is automatically included in this repository as
-a Git [submodule] allowing us to keep our ansible repositories as a subdirectory
-of this Git repository, and keep their commits separate.
+A repository with a Visual-Studio code [devcontainer]. This exists to simplify the
+development and execution of our various kubernetes-based ansible projects by
+providing a consistent environment for playbook execution. Ansible projects
+are automatically included in this repository using the Git [submodule], making
+each ansible repository a subdirectory of this repository, but keeping their
+commits separate.
 
 ---
 

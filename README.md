@@ -26,15 +26,16 @@ Prerequisites: -
 
 ## Initialising the clone (submodules)
 
-As we use submodules, if this is a fresh clone of the repository you will need to
-populate the submodule directories before you can use them - Git does not do this
-automatically without help. To do this after cloning just run the following command
-from inside the repository: -
+As we use submodules, the easiest way to clone this repository is with the following
+command: -
+
+    git clone https://github.com/InformaticsMatters/kubernetes-ansible-projects --recurse-submodules
+
+If you have already cloned the repository without initialising the submodules
+you will need to populate the submodule directories before you can use them.
+To do this after cloning just run the following command from inside the repository: -
 
     git submodule update --init --recursive
-
->   Alternatively, when you clone this repository you can add the command-line option
-    `--recurse-submodules` to do this automatically
 
 To read more about how submodules work read Git's [submodules] documentation
 

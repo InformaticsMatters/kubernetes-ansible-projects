@@ -1,7 +1,5 @@
 # An environment for our Kubernetes-based ansible projects
 
-![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/informaticsmatters/kubernetes-ansible-projects?include_prereleases)
-
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 A repository with a Visual-Studio (VS) code [devcontainer] containing ansible and

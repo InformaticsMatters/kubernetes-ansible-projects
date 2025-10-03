@@ -13,20 +13,26 @@ but keeps their commits separate.
 
 Every submodule is an isolated kubernetes-based ansible project. You do not
 have to use this project to use them - it's simply a convenient way to use all of them.
-The devcontainer provides you with all the tools you need while also mapping our
-kubernetes config files into the `${HOME}` directory of the container. `KUBECONFIG`
-is also set automatically to `${HOME}/.kube/config` so any kubernetes config file
-you have there will be available straight away.
+The built-in **devcontainer** provides you with all the tools you need while also
+mapping our kubernetes config files into the `${HOME}` directory of the container.
+`KUBECONFIG` is also set automatically to `${HOME}/.kube/config` so any kubernetes
+config file you have there will be available straight away.
 
-Prerequisites: -
+Prerequisites (to use the devcontainer): -
 
 1.  Docker
 2.  A `${HOME}/k8s-config` directory
 3.  A `${HOME}/.kube` directory
 
+Prerequisites (to use your own environment): -
+
+1.  Python (ideally v3.11 or better)
+2.  Kubernetes config files
+3.  [kubectl]
+
 As the project uses submodules, if you've not used them before, it might be worth
-spending some time reading about how submodules behave -especially if you plan on
-editing the sub-module's code.
+spending some time reading about how submodules behave - especially if you plan on
+editing code in a submodule.
 
 ## Initialising the clone
 
@@ -100,22 +106,24 @@ for a local cluster) simply change to its directory and run the `site.yaml` file
 
 ## Updating the clone
 
-To update the root project you can use a standard `git pull` but this will not
-update the content of your submodules. Read the [submodule] documentation
-**Pulling Upstream Changes from the Project Remote** section for a better understanding
-of how the man project and its submodules behave.
+Should anything change in the upstream repositories, while you can update
+the root project using the standard `git pull` this will not
+update the content of your submodules.
 
-To pull everything from the remote you can run this command: -
+To pull _everything_ from the remote you can run this command: -
 
     git pull --recurse-submodules
 
+>   Read the [submodule] documentation's
+    **Pulling Upstream Changes from the Project Remote** section
+    for a better understanding of how the root project and its submodules behave.
+
 ## Working on a submodule
 
-Editing submodule code correctly is often a complicated affair.
-You have to do some extra steps if you want changes in a submodule to be tracked.
-As a result you are _strongly advised_ to first read the [submodule] documentation's
-**Working on a Submodule** section for a better understanding of how to edit and
-commit any changes _before_ you make any changes to the submodule code.
+Editing submodule code correctly is a complex affair. You have to do some extra steps
+if you want changes in a submodule to be tracked. As such you are _strongly advised_
+to read the [submodule] documentation's **Working on a Submodule** section first.
+It will help you understanding how to edit and commit changes in a submodule.
 
 ---
 

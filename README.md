@@ -106,8 +106,8 @@ for a local cluster) simply change to its directory and run the `site.yaml` file
 ## Updating the clone
 
 Should anything change in the upstream repositories, while you can update
-the root project using the standard `git pull` this will not
-update the content of your submodules. Instead, to pull _everything_ from the repective
+the root project using the standard `git pull` command this will not
+update the content of your submodules. Instead, to pull _everything_ from the respective
 remotes you can run this command: -
 
     git pull --recurse-submodules
@@ -121,11 +121,11 @@ remotes you can run this command: -
 Editing submodule code correctly is a complex affair. You have to do some extra steps
 if you want changes in a submodule to be tracked. As such you are _strongly advised_
 to read the [submodule] documentation's **Working on a Submodule** section first.
-It will help you understanding how to edit and commit changes in a submodule.
+It will help you understanding how to correctly edit and publish your changes.
 
-Before you start editing a submodule make sure you have chosen a suitable branch.
+Before you start editing make sure you have chosen a suitable branch.
 By default, when the submodules are cloned they exist in a detached state, and
-you need to select a suitable remote branch in order to commit any code.
+you need to select a suitable remote branch before you can commit any code.
 
 ---
 

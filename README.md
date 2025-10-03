@@ -1,7 +1,5 @@
 # An environment for our Kubernetes-based ansible projects
 
-![GitHub](https://img.shields.io/github/license/informaticsmatters/kubernetes-ansible-projects)
-
 ![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/informaticsmatters/kubernetes-ansible-projects?include_prereleases)
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)

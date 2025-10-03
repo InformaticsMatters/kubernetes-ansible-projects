@@ -2,10 +2,10 @@
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-A repository with a Visual-Studio (VS) code [devcontainer] containing ansible and
-[kubectl]. There is no code here, this repository exists to simplify the development
-and execution of our kubernetes-based ansible projects by providing a consistent
-environment for playbook execution.
+A repository with a Visual-Studio (VS) code [devcontainer] with [ansible] and
+[kubectl] built-in. There is no code here, this repository exists to simplify the
+development and execution of our kubernetes-based ansible projects by providing a
+consistent environment for playbook execution.
 
 Ansible projects are automatically included in this repository using Git
 [submodules], which makes each ansible repository a subdirectory of this repository,
@@ -20,11 +20,11 @@ you have there will be available straight away.
 
 Prerequisites: -
 
-- Docker
-- A `${HOME}/k8s-config` directory
-- A `${HOME}/.kube` directory
+1.  Docker
+2.  A `${HOME}/k8s-config` directory
+3.  A `${HOME}/.kube` directory
 
-## Initialising the clone (submodules)
+## Initialising the clone
 
 As we use submodules, the easiest way to clone this repository is with the following
 command: -
@@ -69,11 +69,11 @@ of the clone: -
     but we recommend recent versions, and currently use 3.12 and 3.13.
 
 If you already use our kubernetes clusters you probably have `kubectl`
-installed. If not you now need to [install kubectl] on your host
-that's suitable for our clusters. We currently use kubectl v1.32.
+installed. If not you now need to [install kubectl] on your host,
+one with a version that's suitable for our clusters. We currently use kubectl v1.32.
 
 You will also need to set a suitable value for the `KUBECONFIG` environment
-variable. UNlike `kubectl`, the playbooks do not _assume_ that you want to use
+variable. Unlike `kubectl`, the playbooks do not _assume_ that you want to use
 `~/.kube/config`. If you want to use the default config file you need to set the
 variable accordingly, like this: -
 
@@ -91,8 +91,8 @@ for a local cluster) simply change to its directory and run the `site.yaml` file
     ansible-playbook site.yaml -e @parameters-local.yaml
 
 >   Each ansible project is responsible for its own inventory, and configuration.
-    This is why you need to move to the corresponding repository before running
-    a playbook.
+    This is one reason why you need to move to the corresponding repository
+    sub-directory before running a playbook.
 
 ---
 

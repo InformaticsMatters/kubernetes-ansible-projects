@@ -49,7 +49,7 @@ To do this after cloning just run the following command from inside the reposito
 
 To read more about how submodules work read Git's [submodules] documentation
 
-## Preparation (VS Code)
+## Preparation (VS Code Dev Container)
 
 After cloning, when you open this repository in VS-Code you will be told the folder
 contains a _Dev Container configuration file_ and will be invited to reopen the folder
@@ -57,12 +57,11 @@ in a container. Do so or select the command *Reopen in Container* using the
 **Command Palette** (`Ctrl+Shift+P` or `Cmd+Shift+P` on MacOS).
 
 If the container does not exist VS Code will take a few minutes to build it before
-presenting you with a terminal in it where you will find the tools `ansible`
-and `kubectl`.
+presenting you with a terminal in it where you will find `ansible` and `kubectl`.
 
-## Preparation (virtual environment)
+## Preparation (Virtual environment)
 
-It's not then end of the world if you can't use VS Code and its devcontainer.
+It's not the end of the world if you can't use VS Code and its **devcontainer**.
 
 If you are using a _recent_ Python you can use a its built-in virtual environment
 capability to create an execution environment containing Ansible and some other tools.
@@ -75,12 +74,12 @@ of the clone: -
     pip install --upgrade pip
     pip install -r .devcontainer/requirements.txt
 
->   As along as the requirements can be installed then any Python should be suitable
-    but we recommend recent versions, and currently use 3.12 and 3.13.
+>   As along as the requirements can be installed then any Python should be suitable,
+    but we recommend a recent version, and we commonly use 3.12 and 3.13.
 
 If you already use our kubernetes clusters you probably have `kubectl`
-installed. If not you now need to [install kubectl] on your host,
-one with a version that's suitable for our clusters. We currently use kubectl v1.32.
+installed. If not you now need to [install kubectl] on your host.
+Install a version that's suitable for our clusters (we currently use kubectl v1.32).
 
 You will also need to set a suitable value for the `KUBECONFIG` environment
 variable. Unlike `kubectl`, the playbooks do not _assume_ that you want to use
@@ -91,8 +90,8 @@ variable accordingly, like this: -
 
 ## Running the playbooks
 
-With your environment set (VS code or a virtual environment) you should now
-be able to run our playbooks by moving to the relevant submodule directory.
+With your chosen environment set (devcontainer or a virtual environment) you should now
+be able to run playbooks by moving to the relevant submodule directory.
 
 To run our basic **ansible-infrastructure** playbook (using our built-in parameters
 for a local cluster) simply change to its directory and run the `site.yaml` file: -
@@ -108,9 +107,8 @@ for a local cluster) simply change to its directory and run the `site.yaml` file
 
 Should anything change in the upstream repositories, while you can update
 the root project using the standard `git pull` this will not
-update the content of your submodules.
-
-To pull _everything_ from the remote you can run this command: -
+update the content of your submodules. Instead, to pull _everything_ from the repective
+remotes you can run this command: -
 
     git pull --recurse-submodules
 
@@ -124,6 +122,10 @@ Editing submodule code correctly is a complex affair. You have to do some extra 
 if you want changes in a submodule to be tracked. As such you are _strongly advised_
 to read the [submodule] documentation's **Working on a Submodule** section first.
 It will help you understanding how to edit and commit changes in a submodule.
+
+Before you start editing a submodule make sure you have chosen a suitable branch.
+By default, when the submodules are cloned they exist in a detached state, and
+you need to select a suitable remote branch in order to commit any code.
 
 ---
 

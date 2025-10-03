@@ -20,15 +20,17 @@ config file you have there will be available straight away.
 
 Prerequisites (to use the devcontainer): -
 
-1.  Docker
-2.  A `${HOME}/k8s-config` directory
-3.  A `${HOME}/.kube` directory
+1.  A kubernetes cluster
+2.  [Docker]
+3.  A `${HOME}/k8s-config` directory
+4.  A `${HOME}/.kube` directory
 
 Prerequisites (to use your own environment): -
 
-1.  Python (ideally v3.11 or better)
-2.  Kubernetes config files
-3.  [kubectl]
+1.  A kubernetes cluster
+2.  [Python] (ideally v3.11 or better)
+3.  At least one kubernetes configuration file
+4.  [kubectl]
 
 As the project uses submodules, if you've not used them before, it might be worth
 spending some time reading about how submodules behave - especially if you plan on
@@ -134,5 +136,6 @@ you need to select a suitable remote branch before you can commit any code.
 [docker]: https://www.docker.com
 [install kubectl]: https://kubernetes.io/docs/tasks/tools/#kubectl
 [kubectl]: https://kubernetes.io/docs/reference/kubectl/
+[python]: https://www.python.org
 [submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 [submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules

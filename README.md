@@ -25,7 +25,21 @@ Prerequisites: -
 - A `${HOME}/k8s-config` directory
 - A `${HOME}/.kube` directory
 
-## Using the repository (VS Code)
+## Initialising the clone (submodules)
+
+As we use submodules, if this is a fresh clone of the repository you will need to
+populate the submodule directories before you can use them - Git does not do this
+automatically without help. To do this after cloning just run the following command
+from inside the repository: -
+
+    git submodule update --init --recursive
+
+>   Alternatively, when you clone this repository you can add the command-line option
+    `--recurse-submodules` to do this automatically
+
+To read more about how submodules work read Git's [submodules] documentation
+
+## Running playbooks (VS Code)
 
 When you open this repository in VS-Code after cloning you will be told the folder
 contains a _Dev Container configuration file_ and will be invited to reopen the folder
@@ -36,22 +50,10 @@ If the container does not exist VS Code will take a few minutes to build it befo
 presenting you with a terminal in it where you will find a dedicated `ansible`
 and `kubectl`.
 
-If this is a fresh clone of the repository you will need to populate the submodule
-directories before you can use them - Git does not do this automatically without help.
-To do this after cloning just run the following command in the terminal: -
+You can now run playbooks by moving to the relevant submodule directory.
 
-    git submodule update --init --recursive
-
->   When you clone this repository you can add the command-line option
-    `--recurse-submodules` to do this automatically
-
->   To read more about how submodules work read Git's [submodules] documentation
-
-Now that you have a fully populated project (and Ansible) you can now run playbooks
-by moving to the relevant submodule directory.
-
-To run our basic **ansible-infrastructre** playbook using parameters for a local
-cluster simply change to its directory and run the `site.yaml` file: -
+To run our basic **ansible-infrastructure** playbook (using our built-in parameters
+for a local cluster) simply change to its directory and run the `site.yaml` file: -
 
     pushd ansible-infrastructure
     ansible-playbook site.yaml -e @parameters-local.yaml

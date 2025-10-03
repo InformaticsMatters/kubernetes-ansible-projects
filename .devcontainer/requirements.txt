@@ -1,4 +1,6 @@
-# Requirements file for the dev-container
+# Requirements file for the dev-container (and virtual environment).
+# All requirements MUST be pinned (i.e. only '==').
 ansible == 12.0.0
-kubernetes == 31.0.0
+ansible-lint == 25.9.1
+kubernetes == 32.0.1
 pre-commit == 4.3.0

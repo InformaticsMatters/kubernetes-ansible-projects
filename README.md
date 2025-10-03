@@ -5,8 +5,9 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 A repository with a Visual-Studio (VS) code [devcontainer] containing ansible and
-[kubectl]. There is no code here, this repository exists to simplify the development and execution of our kubernetes-based ansible projects by providing a consistent environment
-for playbook execution.
+[kubectl]. There is no code here, this repository exists to simplify the development
+and execution of our kubernetes-based ansible projects by providing a consistent
+environment for playbook execution.
 
 Ansible projects are automatically included in this repository using Git
 [submodules], which makes each ansible repository a subdirectory of this repository,
@@ -39,18 +40,50 @@ from inside the repository: -
 
 To read more about how submodules work read Git's [submodules] documentation
 
-## Running playbooks (VS Code)
+## Preparation (VS Code)
 
-When you open this repository in VS-Code after cloning you will be told the folder
+After cloning, when you open this repository in VS-Code you will be told the folder
 contains a _Dev Container configuration file_ and will be invited to reopen the folder
 in a container. Do so or select the command *Reopen in Container* using the
 **Command Palette** (`Ctrl+Shift+P` or `Cmd+Shift+P` on MacOS).
 
 If the container does not exist VS Code will take a few minutes to build it before
-presenting you with a terminal in it where you will find a dedicated `ansible`
+presenting you with a terminal in it where you will find the tools `ansible`
 and `kubectl`.
 
-You can now run playbooks by moving to the relevant submodule directory.
+## Preparation (virtual environment)
+
+It's not then end of the world if you can't use VS Code and its devcontainer.
+
+If you are using a _recent_ Python you can use a its built-in virtual environment
+capability to create an execution environment containing Ansible and some other tools.
+
+It should be simple to get started by running these commands from the root
+of the clone: -
+
+    python -m venv venv
+    source venv/bin/activate
+    pip install --upgrade pip
+    pip install -r .devcontainer/requirements.txt
+
+>   As along as the requirements can be installed then any Python should be suitable
+    but we recommend recent versions, and currently use 3.12 and 3.13.
+
+If you already use our kubernetes clusters you probably have `kubectl`
+installed. If not you now need to [install kubectl] on your host
+that's suitable for our clusters. We currently use kubectl v1.32.
+
+You will also need to set a suitable value for the `KUBECONFIG` environment
+variable. UNlike `kubectl`, the playbooks do not _assume_ that you want to use
+`~/.kube/config`. If you want to use the default config file you need to set the
+variable accordingly, like this: -
+
+    export KUBECONFIG=~/.kube/config
+
+## Running the playbooks
+
+With your environment set (VS code or a virtual environment) you should now
+be able to run our playbooks by moving to the relevant submodule directory.
 
 To run our basic **ansible-infrastructure** playbook (using our built-in parameters
 for a local cluster) simply change to its directory and run the `site.yaml` file: -
@@ -59,11 +92,14 @@ for a local cluster) simply change to its directory and run the `site.yaml` file
     ansible-playbook site.yaml -e @parameters-local.yaml
 
 >   Each ansible project is responsible for its own inventory, and configuration.
+    This is why you need to move to the corresponding repository before running
+    a playbook.
 
 ---
 
 [ansible]: https://docs.ansible.com
 [devcontainer]: https://code.visualstudio.com/docs/devcontainers/containers
 [docker]: https://www.docker.com
+[install kubectl]: https://kubernetes.io/docs/tasks/tools/#kubectl
 [kubectl]: https://kubernetes.io/docs/reference/kubectl/
 [submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules

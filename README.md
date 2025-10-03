@@ -24,6 +24,10 @@ Prerequisites: -
 2.  A `${HOME}/k8s-config` directory
 3.  A `${HOME}/.kube` directory
 
+As the project uses submodules, if you've not used them before, it might be worth
+spending some time reading about how submodules behave -especially if you plan on
+editing the sub-module's code.
+
 ## Initialising the clone
 
 As we use submodules, the easiest way to clone this repository is with the following
@@ -94,6 +98,25 @@ for a local cluster) simply change to its directory and run the `site.yaml` file
     This is one reason why you need to move to the corresponding repository
     sub-directory before running a playbook.
 
+## Updating the clone
+
+To update the root project you can use a standard `git pull` but this will not
+update the content of your submodules. Read the [submodule] documentation
+**Pulling Upstream Changes from the Project Remote** section for a better understanding
+of how the man project and its submodules behave.
+
+To pull everything from the remote you can run this command: -
+
+    git pull --recurse-submodules
+
+## Working on a submodule
+
+Editing submodule code correctly is often a complicated affair.
+You have to do some extra steps if you want changes in a submodule to be tracked.
+As a result you are _strongly advised_ to first read the [submodule] documentation's
+**Working on a Submodule** section for a better understanding of how to edit and
+commit any changes _before_ you make any changes to the submodule code.
+
 ---
 
 [ansible]: https://docs.ansible.com
@@ -101,4 +124,5 @@ for a local cluster) simply change to its directory and run the `site.yaml` file
 [docker]: https://www.docker.com
 [install kubectl]: https://kubernetes.io/docs/tasks/tools/#kubectl
 [kubectl]: https://kubernetes.io/docs/reference/kubectl/
+[submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 [submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules

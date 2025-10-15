@@ -130,15 +130,18 @@ It will help you understanding how to correctly edit and publish your changes.
 Before you start editing make sure you have chosen a suitable branch.
 By default, when the submodules are cloned they exist in a detached state, and
 you need to select a suitable remote branch before you can commit any code
-(typically `main` or `master`). The current submodule branches are: -
+(typically `main` or `master`). From the submodule directories you can
+run `git checkout <branch>` using the following branches: -
 
--   ansible-infrastructure = master
--   squonk2-account-server-ansible = master
--   squonk2-data-manager-ansible = master
--   squonk2-data-manager-job-operator-ansible = main
--   squonk2-data-manager-jupyter-operator-ansible = main
--   squonk2-data-manager-ui-ansible = master
--   squonk2-fastapi-ws-event-stream-ansible = main
+```yaml
+ansible-infrastructure: master
+squonk2-account-server-ansible: master
+squonk2-data-manager-ansible: master
+squonk2-data-manager-job-operator-ansible: main
+squonk2-data-manager-jupyter-operator-ansible: main
+squonk2-data-manager-ui-ansible: master
+squonk2-fastapi-ws-event-stream-ansible: main
+```
 
 ---
 

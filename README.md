@@ -124,12 +124,13 @@ remotes you can run this command: -
 
 Editing submodule code correctly is a complex affair. You have to do some extra steps
 if you want changes in a submodule to be tracked. As such you are _strongly advised_
-to read the [submodule] documentation's **Working on a Submodule** section first.
+to read the [submodule] documentation's **"Working on a Submodule"** section first.
 It will help you understanding how to correctly edit and publish your changes.
 
 Before you start editing make sure you have chosen a suitable branch.
 By default, when the submodules are cloned they exist in a detached state, and
-you need to select a suitable remote branch before you can commit any code.
+you need to select a suitable remote branch before you can commit any code
+(typically `main` or `master`).
 
 ---
 

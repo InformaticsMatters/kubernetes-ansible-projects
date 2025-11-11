@@ -26,6 +26,8 @@ Prerequisites (to use the devcontainer): -
 2.  [Docker]
 3.  A `${HOME}/k8s-config` directory
 4.  A `${HOME}/.kube` directory
+5.  [Visual Studio Code] with the **Dev Containers** extension installed
+6.  An adjusted `/etc/hosts` to allow access to the kubernetes cluster's API
 
 Prerequisites (to use your own environment): -
 
@@ -40,7 +42,16 @@ editing code in a submodule.
 
 ## Initialising the clone
 
-As we use submodules, the easiest way to clone this repository is with the following
+Some of our repositories are hosted in GitLab and are not public. Before you start
+make sure you can clone from our GitLan repos, like the one below. If you can,
+and you can clone from GitHub then the remaining commands should work.
+So, first, try this...
+
+    git clone https://gitlab.com/informaticsmatters/squonk2-account-server-ansible
+
+If that worked ... remove the clone and move on ...
+
+As we use [submodules], the easiest way to clone this repository is with the following
 command: -
 
     git clone https://github.com/InformaticsMatters/kubernetes-ansible-projects --recurse-submodules
@@ -55,13 +66,36 @@ To read more about how submodules work read Git's [submodules] documentation
 
 ## Preparation (VS Code Dev Container)
 
-After cloning, when you open this repository in VS-Code you will be told the folder
+Because we are working from within a container your cluster cannot use the
+`127.0.0.1` address, and this is likely to be the address of your cluster
+if you are using a local cluster. To get around this we simply have to add a new name
+for `127.0.0.1` in `/etc/hosts`. Simply add something like this: -
+
+    127.0.0.1 localhost kubernetes.docker.internal
+
+...to the `/etc/hosts` on your machine (not the one in the dev container).
+With this done adjust any offending kubernetes config file so that the `server` line
+is...
+
+    server: https://kubernetes.docker.internal:6443
+
+
+...and not...
+
+    server: https://127.0.0.1:6443
+
+When you open the clone in Visual Studio Code you will be told the folder
 contains a _Dev Container configuration file_ and will be invited to reopen the folder
 in a container. Do so or select the command *Reopen in Container* using the
 **Command Palette** (`Ctrl+Shift+P` or `Cmd+Shift+P` on MacOS).
 
 If the container does not exist VS Code will take a few minutes to build it before
 presenting you with a terminal in it where you will find `ansible` and `kubectl`.
+
+If all this has worked you should be able to contact the cluster and obtain the list
+of nodes with the command: -
+
+    kubectl get no
 
 ## Preparation (Virtual environment)
 
@@ -153,3 +187,4 @@ squonk2-fastapi-ws-event-stream-ansible: main
 [python]: https://www.python.org
 [submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 [submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+[visual studio code]: https://code.visualstudio.com

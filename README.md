@@ -168,7 +168,7 @@ you need to select a suitable remote branch before you can commit any code
 run `git checkout <branch>` using the following branches: -
 
 ```yaml
-ansible-infrastructure: master
+ansible-infrastructure: main
 squonk2-account-server-ansible: master
 squonk2-data-manager-ansible: master
 squonk2-data-manager-job-operator-ansible: main

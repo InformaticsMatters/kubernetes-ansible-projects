@@ -1,7 +1,7 @@
 [submodule "ansible-infrastructure"]
 	path = ansible-infrastructure
 	url = https://github.com/InformaticsMatters/ansible-infrastructure
-	branch = master
+	branch = main
 [submodule "squonk2-data-manager-job-operator-ansible"]
 	path = squonk2-data-manager-job-operator-ansible
 	url = https://github.com/InformaticsMatters/squonk2-data-manager-job-operator-ansible

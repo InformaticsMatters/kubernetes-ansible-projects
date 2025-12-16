@@ -28,6 +28,19 @@
       "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached",
       "source=projectname-bashhistory,target=/commandhistory,type=volume"
   ],
+  // Inject 'expected' host environment variables
+  // so they apply to the entire container
+  "containerEnv": {
+    "IM_DEV_AS_IMAGE_TAG": "${localEnv:IM_DEV_AS_IMAGE_TAG}",
+    "IM_DEV_AS_PULL_SECRET": "${localEnv:IM_DEV_AS_PULL_SECRET}",
+    "IM_DEV_DM_IMAGE_TAG": "${localEnv:IM_DEV_DM_IMAGE_TAG}",
+    "IM_DEV_DM_PULL_SECRET": "${localEnv:IM_DEV_DM_PULL_SECRET}",
+    "IM_DEV_JOBO_IMAGE_TAG": "${localEnv:IM_DEV_JOBO_IMAGE_TAG}",
+    "IM_DEV_JUPO_IMAGE_TAG": "${localEnv:IM_DEV_JUPO_IMAGE_TAG}",
+    "IM_DEV_UI_CLIENT_SECRET": "${localEnv:IM_DEV_UI_CLIENT_SECRET}",
+    "IM_DEV_UI_IMAGE_TAG": "${localEnv:IM_DEV_UI_IMAGE_TAG}",
+    "KUBECONFIG": "/home/vscode/.kube/config"
+  },
   // Studio Code custom module/plugins to load.
   "customizations": {
     "vscode": {

@@ -13,7 +13,3 @@ RUN pip install -r /tmp/requirements.txt \
     && rm /tmp/requirements.txt \
     && curl -LO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${PLATFORM}/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-
-# Set KUBECONFIG (to the dev container's default config).
-# The user can (and is encouraged to) change this from the terminal.
-ENV KUBECONFIG=/home/vscode/.kube/config

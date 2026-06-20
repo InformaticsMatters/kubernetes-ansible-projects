@@ -25,6 +25,7 @@ branch below before committing inside one):
 | `squonk2-data-manager-job-operator-ansible` | GitHub | `main` |
 | `squonk2-data-manager-jupyter-operator-ansible` | GitHub | `main` |
 | `squonk2-data-manager-ui-ansible` | GitHub | `master` |
+| `squonk2-data-manager-viz-operator-ansible` | GitHub | `main` |
 | `squonk2-fastapi-ws-event-stream-ansible` | GitHub | `main` |
 
 Two submodules are hosted on **private GitLab** repos — cloning/updating fails

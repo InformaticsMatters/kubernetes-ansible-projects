@@ -26,3 +26,7 @@
 	path = squonk2-data-manager-ui-ansible
 	url = https://github.com/InformaticsMatters/squonk2-data-manager-ui-ansible
 	branch = master
+[submodule "squonk2-data-manager-viz-operator-ansible"]
+	path = squonk2-data-manager-viz-operator-ansible
+	url = https://github.com/InformaticsMatters/squonk2-data-manager-viz-operator-ansible
+	branch = main

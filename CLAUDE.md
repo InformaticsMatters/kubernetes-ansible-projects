@@ -3,9 +3,9 @@ convenience wrapper that:
 
 1. Aggregates several independent kubernetes-based Ansible projects as Git
    **submodules**, each living in its own top-level directory.
-2. Provides a VS Code **devcontainer** (and an equivalent virtualenv recipe) that
-   ships `ansible`, `ansible-lint`, and `kubectl` so every submodule runs in a
-   consistent environment.
+2. Provides a VS Code **devcontainer** (and an equivalent `uv` virtualenv recipe)
+   that ships `ansible`, `ansible-lint`, and `kubectl` so every submodule runs in
+   a consistent environment.
 
 Each submodule is a self-contained Ansible project with its own inventory,
 parameters, and lifecycle. You can use any of them without this wrapper; this
@@ -50,15 +50,18 @@ If submodule directories are empty, they have not been initialised — run the
 `git submodule update --init --recursive` command above before doing anything
 else.
 
-### Non-devcontainer environment (virtualenv)
+### Non-devcontainer environment (uv)
 
 ```bash
-python -m venv venv
-source venv/bin/activate
-pip install --upgrade pip
-pip install -r .devcontainer/requirements.txt
-export KUBECONFIG=~/.kube/config   # playbooks do NOT assume a default kubeconfig
+uv venv                                    # reads .python-version (3.13)
+source .venv/bin/activate
+uv pip install -r .devcontainer/requirements.txt
+export KUBECONFIG=~/.kube/config           # playbooks do NOT assume a default kubeconfig
 ```
+
+`uv venv` creates `.venv/` and downloads the pinned Python if needed. The
+`.devcontainer/requirements.txt` file stays the single source of truth for the
+Python packages (the devcontainer `Dockerfile` installs from it too).
 
 ### Running a playbook
 
@@ -78,6 +81,11 @@ the convention for selecting a target environment.
   to use `==` (currently ansible 12.0.0, ansible-lint 25.9.1, kubernetes 32.0.1,
   pre-commit 4.3.0). `kubectl` is pinned in `.devcontainer/Dockerfile`
   (currently v1.32.8) and the clusters use kubectl v1.32.
+- **Python version**: pinned to 3.13 in `.python-version` (consumed by `uv` for
+  the non-devcontainer environment; the devcontainer's `Dockerfile` pins its own
+  3.13 base image). It is the newest Python the pinned requirements resolve
+  against — `ansible-core` 2.19 (required by ansible 12.0.0) does not yet support
+  3.14, so bump this only when the Ansible pins move.
 - **kubeconfig**: the devcontainer mounts `~/.kube` and `~/k8s-config` and sets
   `KUBECONFIG=/home/vscode/.kube/config`. Outside the devcontainer you must set
   `KUBECONFIG` yourself.

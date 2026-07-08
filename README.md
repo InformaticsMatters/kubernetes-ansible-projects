@@ -32,7 +32,7 @@ Prerequisites (to use the devcontainer): -
 Prerequisites (to use your own environment): -
 
 1.  A kubernetes cluster
-2.  [Python] (ideally v3.11 or better)
+2.  [uv] (it will install and manage [Python] for you)
 3.  At least one kubernetes configuration file
 4.  [kubectl]
 
@@ -101,19 +101,22 @@ of nodes with the command: -
 
 It's not the end of the world if you can't use VS Code and its **devcontainer**.
 
-If you are using a _recent_ Python you can use a its built-in virtual environment
-capability to create an execution environment containing Ansible and some other tools.
+We use [uv] to create a local execution environment containing Ansible and some
+other tools. It is driven by the same pinned requirements the devcontainer uses
+(`.devcontainer/requirements.txt`), so you get an identical set of packages.
 
 It should be simple to get started by running these commands from the root
 of the clone: -
 
-    python -m venv venv
-    source venv/bin/activate
-    pip install --upgrade pip
-    pip install -r .devcontainer/requirements.txt
+    uv venv
+    source .venv/bin/activate
+    uv pip install -r .devcontainer/requirements.txt
 
->   As along as the requirements can be installed then any Python should be suitable,
-    but we recommend a recent version, and we commonly use 3.12 and 3.13.
+>   `uv venv` reads the `.python-version` file in the root of the clone and will
+    download that version of Python for you if you don't already have it. We pin
+    **Python 3.13** because it is the newest version the pinned requirements
+    support - the Ansible release we use (`ansible-core` 2.19) does not yet
+    support Python 3.14.
 
 If you already use our kubernetes clusters you probably have `kubectl`
 installed. If not you now need to [install kubectl] on your host.
@@ -187,4 +190,5 @@ squonk2-fastapi-ws-event-stream-ansible: main
 [python]: https://www.python.org
 [submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 [submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+[uv]: https://docs.astral.sh/uv/
 [visual studio code]: https://code.visualstudio.com

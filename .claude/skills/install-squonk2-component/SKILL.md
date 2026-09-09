@@ -10,7 +10,8 @@ Background and conventions live in `INSTALLATION-GUIDE.md` at the repository roo
 
 Each component is an Ansible project held here as a Git submodule. Installing a
 component means: pick the component, pick the installation, supply the vault
-password and `KUBECONFIG`, choose the image tag, then run the playbook.
+password, ask the user which kubeconfig to use, choose the image tag, then run
+the playbook.
 
 ## Components
 
@@ -75,21 +76,36 @@ Most components ship vaults only for the installations they have been deployed
 to. If there is no matching vault, stop and report which installations that
 component does have — the user has probably named the wrong installation.
 
-### 4. Show the KUBECONFIG and confirm the cluster
+### 4. Ask which kubeconfig to use, then confirm the cluster
 
-Display the value plainly, along with the context the playbook will actually
-act on, and let the user confirm before anything is applied:
+**Always ask the user which kubeconfig to use.** Never assume one — not the
+ambient `KUBECONFIG`, not a default, and not a file used earlier in the
+conversation. The environment's `KUBECONFIG` frequently points at an unrelated
+cluster, and these playbooks change whatever cluster they are pointed at.
+
+Offer the candidates rather than making the user recall a path. Show what the
+environment currently has, and list the kubeconfigs available:
 
 ```bash
 echo "KUBECONFIG=${KUBECONFIG:-<unset>}"
-kubectl config current-context
-kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}'; echo
+ls ~/.kube/config 2>/dev/null
+find ~/k8s-config -name '*.yaml' 2>/dev/null
 ```
 
-If `KUBECONFIG` is unset, **stop** and ask the user which kubeconfig to use —
-the playbooks do not assume a default. Report the context and server back to
-the user and get their agreement that it is the right cluster for this
-installation before continuing.
+Present that list and ask the user to pick the one for this installation. Wait
+for their answer — do not proceed on the ambient value just because it is set.
+
+With their chosen file, show the context and server it resolves to, and get
+their agreement that it is the right cluster before anything is applied:
+
+```bash
+KUBECONFIG=<chosen> kubectl config current-context
+KUBECONFIG=<chosen> kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}'; echo
+```
+
+Carry `<chosen>` through to every later `kubectl` and `ansible-playbook`
+command in this run, set explicitly on the command line, so the run cannot
+drift onto the ambient value.
 
 ### 5. Ask for the version
 
@@ -102,7 +118,8 @@ It is often useful to show what is deployed now, so the user can see what they
 are moving from:
 
 ```bash
-kubectl get deployment -n <namespace> -o jsonpath='{.items[*].spec.template.spec.containers[*].image}'; echo
+KUBECONFIG=<chosen> kubectl get deployment -n <namespace> \
+  -o jsonpath='{.items[*].spec.template.spec.containers[*].image}'; echo
 ```
 
 ### 6. Run the playbook
@@ -111,6 +128,7 @@ Run from inside the submodule, using this repository's virtualenv:
 
 ```bash
 cd <submodule>
+KUBECONFIG=<chosen> \
 ANSIBLE_VAULT_PASSWORD_FILE=../<installation>-installation.password \
 ANSIBLE_COLLECTIONS_PATH=../.venv/lib/python3.13/site-packages \
 ../.venv/bin/ansible-playbook site.yaml \

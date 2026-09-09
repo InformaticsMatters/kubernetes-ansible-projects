@@ -71,8 +71,9 @@ and distribute the encryption keys only tho those who need them, while keeping
 the sensitive material for the remaining installations secret.
 
 To ensure that Ansible can decrypt the sensitive file, we place the `name` of
-installation in a `[component]_installation_name` playbook variable (often on the command-line). The Account Server's variable is `as_installation_name` and it uses
-this value to load the corresponding sensitive file.
+installation in a `[component]_installation_name` playbook variable
+(often on the command-line). The Account Server's variable is
+`as_installation_name` and it uses this value to load the corresponding sensitive file.
 
 We then use any one of the standard Ansible patterns to provide the
 encryption key to the running playbook: -
@@ -122,6 +123,7 @@ _infrastructure_ the installation relies on exists the order is: -
 Apart from the FastAPI Event Stream, each component is installed into its own
 **Namespace**, which the component's playbook creates.
 
+### Operators
 Although the "Operators" create their own **Namespaces**, and objects, some
 also install material in the Data Manager **Namespace**. The `viz-operator`
 and `jupyter-operator` do. These DM objects, typically **ConfigFiles**,

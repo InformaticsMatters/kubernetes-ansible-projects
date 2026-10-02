@@ -40,6 +40,22 @@ As the project uses submodules, if you've not used them before, it might be wort
 spending some time reading about how submodules behave - especially if you plan on
 editing code in a submodule.
 
+## A local (kind) cluster
+
+If you need a local cluster, `kind-cluster.yaml` is a [kind] configuration for a
+single-node cluster with the node labels, ingress ports and API server certificate
+our playbooks expect. Create it, and then install the nginx ingress controller,
+with: -
+
+    kind create cluster --name squonk2 --image kindest/node:v1.32.8 \
+        --config kind-cluster.yaml --kubeconfig ~/k8s-config/kind-squonk2.yaml
+    export KUBECONFIG=~/k8s-config/kind-squonk2.yaml
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.1/deploy/static/provider/kind/deploy.yaml
+
+To start again from scratch simply delete the cluster (and everything in it): -
+
+    kind delete cluster --name squonk2
+
 ## Initialising the clone
 
 Some of our repositories are hosted in GitLab and are not public. Before you start
@@ -186,6 +202,7 @@ squonk2-fastapi-ws-event-stream-ansible: main
 [devcontainer]: https://code.visualstudio.com/docs/devcontainers/containers
 [docker]: https://www.docker.com
 [install kubectl]: https://kubernetes.io/docs/tasks/tools/#kubectl
+[kind]: https://kind.sigs.k8s.io
 [kubectl]: https://kubernetes.io/docs/reference/kubectl/
 [python]: https://www.python.org
 [submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
